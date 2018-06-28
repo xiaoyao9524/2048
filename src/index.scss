@@ -1,0 +1,241 @@
+@import './common/scss/tool.scss';
+@import './common/scss/reset.scss';
+#app {
+  padding-top: p(40);
+  margin: 0 auto;
+  width: p(560);
+  .head {
+    &>.title {
+      float: left;
+      width: p(200);
+      font-size: p(40);
+      line-height: p(134);
+      color: #756e66;
+    }
+    .score-wrapper {
+      float: right;
+      .score,
+      .best {
+        float: left;
+        padding: p(14) p(26) p(6);
+        border-radius: p(8);
+        background: #b9ada1;
+        .title {
+          font-size: p(28);
+          font-weight: bold;
+          line-height: p(38);
+          color: #ede4db;
+          text-align: center;
+        }
+        .content {
+          font-size: p(36);
+          font-weight: bold;
+          line-height: p(54);
+          color: #fff;
+          text-align: center;
+        }
+      }
+      .score {
+        margin-right: p(10);
+      }
+    }
+  }
+  // 简介和新游戏
+  .introduction {
+    .text {
+      float: left;
+      width: p(350);
+      font-size: p(30);
+      font-weight: bold;
+      line-height: p(80);
+      color: #756e66;
+    }
+    .new-game {
+      float: right;
+      padding: 0 p(45);
+      font-size: p(32);
+      line-height: p(80);
+      border-radius: p(8);
+      color: #f9f6f3;
+      background: #756e66;
+    }
+  }
+  // 游戏区域
+  .game {
+    position: relative;
+    width: 260px;
+    height: 270px;
+    margin: 15px auto 0;
+    padding: p(20) p(20) 0;
+    border-radius: 5px;
+    background: #b9ada1;
+    // 背景区域
+    .container-bg {
+      margin: 0 auto;
+      width: 260px;
+      height: 270px;
+      .row {
+        padding-bottom: 10px;
+        width: 100%;
+        height: 56px;
+        &:nth-last-of-type(1) {
+          padding-bottom: 0;
+        }
+        .grid {
+          float: left;
+          margin-right: 10px;
+          width: 56px;
+          height: 56px;
+          border-radius: 5px;
+          background: rgba(255,255,255,.2);
+          &:nth-last-of-type(1) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    // 游戏格子区域
+    .game-box {
+      position: absolute;
+      top: p(20);
+      left: p(20);
+      right: p(20);
+      bottom: p(20);
+      // background: rgba(0,255,255,.1);
+      .game-item {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        line-height: 56px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: .3s;
+      }
+      // 样式
+      .c2 {
+        font-size: p(50);
+        color: #756e66;
+        background: #ede4db;
+      }
+      .c4 {
+        font-size: p(48);
+        color: #756e66;
+        background: #ebe0cb;
+      }
+      .c8 {
+        font-size: p(50);
+        color: #f9f6f3;
+        background: #e9b381;
+      }
+      .c16 {
+        font-size: p(50);
+        color: #f9f6f3;
+        background: #e9996c;
+      }
+      .c32 {
+        font-size: p(50);
+        color: #f9f6f3;
+        background: #e78266;
+      }
+      .c64 {
+        font-size: p(50);
+        color: #f9f6f3;
+        background: #e56747;
+      }
+      .c128 {
+        font-size: p(36);
+        color: #f9f6f3;
+        background: #e9cf7f;
+      }
+      .c256 {
+        font-size: p(36);
+        color: #f9f6f3;
+        background: #e8cc71;
+      }
+      .c512 {
+        font-size: p(36);
+        color: #f9f6f3;
+        background: #e8c964;
+      }
+      .c1024 {
+        font-size: p(24);
+        color: #f9f6f3;
+        background: #e8c659;
+      }
+      .c2048 {
+        font-size: p(24);
+        color: #f9f6f3;
+        background: #e7c34f;
+      }
+      // 位置 .p + x-y
+      .p0-0 {
+        top: 0;
+        left: 0;
+      }
+      .p1-0 {
+        top: 0;
+        left: 66px;
+      }
+      .p2-0 {
+        top: 0;
+        left: 132px;
+      }
+      .p3-0 {
+        top: 0;
+        left: 198px;
+      }
+      // row2
+      .p0-1 {
+        top: 66px;
+        left: 0;
+      }
+      .p1-1 {
+        top: 66px;
+        left: 66px;
+      }
+      .p2-1 {
+        top: 66px;
+        left: 132px;
+      }
+      .p3-1 {
+        top: 66px;
+        left: 198px;
+      }
+      // row3
+      .p0-2 {
+        top: 132px;
+        left: 0;
+      }
+      .p1-2 {
+        top: 132px;
+        left: 66px;
+      }
+      .p2-2 {
+        top: 132px;
+        left: 132px;
+      }
+      .p3-2 {
+        top: 132px;
+        left: 198px;
+      }
+      // row4
+      .p0-3 {
+        top: 198px;
+        left: 0;
+      }
+      .p1-3 {
+        top: 198px;
+        left: 66px;
+      }
+      .p2-3 {
+        top: 198px;
+        left: 132px;
+      }
+      .p3-3 {
+        top: 198px;
+        left: 198px;
+      }
+    }
+  }
+}
