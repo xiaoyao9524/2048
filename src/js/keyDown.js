@@ -1,5 +1,5 @@
 import {data} from './data'
-import {moveUpOrDown} from './keyDownTool'
+import {moveUpOrDown, moveLeftOrRight} from './keyDownTool'
 
 exports.up = function () {
   for (let y = 1; y < data.length; y++) {
@@ -25,11 +25,11 @@ exports.down = function () {
     let row = data[y];
     for (let x = 0; x < row.length; x++) {
       let item = row[x];
-      if (!item.value) {
+      let val = item.value;
+      if (!val) {
         continue;
       }
       // 开始检测
-      let val = item.value;
       // console.log('开始检查：', x, y);
       moveUpOrDown('down', {x, y, val});
     }
@@ -37,7 +37,19 @@ exports.down = function () {
 };
 
 exports.left = function () {
-  console.log('left')
+  console.log('left');
+
+  for (let y = 0; y < 4; y++) {
+    let row = data[y];
+    for (let x = 1; x < row.length; x++) {
+      let item = row[x];
+      let val = item.value;
+      if (!val) {
+        continue;
+      }
+      moveLeftOrRight({x, y, val});
+    }
+  }
 };
 
 exports.right = function () {
