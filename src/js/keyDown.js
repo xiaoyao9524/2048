@@ -47,13 +47,25 @@ exports.left = function () {
       if (!val) {
         continue;
       }
-      moveLeftOrRight({x, y, val});
+      moveLeftOrRight('left', {x, y, val});
     }
   }
 };
 
 exports.right = function () {
   console.log('right')
+
+  for (let y = 0; y < 4; y++) {
+    let row = data[y];
+    for (let x = 2; x >= 0; x--) {
+      let item = row[x];
+      let val = item.value;
+      if (!val) {
+        continue;
+      }
+      moveLeftOrRight('right', {x, y, val});
+    }
+  }
 };
 
 

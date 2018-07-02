@@ -12,26 +12,31 @@ exports.calculationCoordinate = function (num) {
 };
 
 exports.renderGame = function (data) {
+  // console.clear();
   console.log('renderGame 开始');
-  console.log('数据：', data);
-  let str = '';
-  for (let y = 0; y < data.length; y++) {
-    let row = data[y];
-    for (let x = 0; x < row.length; x++) {
-      let item = row[x];
-      if (!item.value) {
-        continue;
-      }
-      let x = item.x;
-      let y = item.y;
-      // style='left: ${data[y][x].left}px;top: ${data[y][x].top}px'
-      str += `
+    console.log('数据：', data);
+    let str = '';
+    for (let y = 0; y < data.length; y++) {
+      let row = data[y];
+      // console.log(row);
+      for (let x = 0; x < row.length; x++) {
+        let item = row[x];
+        // console.log(item);
+        if (!item.value) {
+          continue;
+        }
+
+        let x = item.x;
+        let y = item.y;
+
+        str += `
         <div 
-          class='game-item c${item.value} p${item.x}-${item.y}'
+          class='game-item c${item.value} p${x}-${y}'
         >
           ${item.value}
         </div>`;
+      }
     }
-  }
-  $('.game .game-box').html(str);
+    // console.log(data, str);
+    $('.game .game-box').html(str);
 };

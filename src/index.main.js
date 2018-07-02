@@ -2,9 +2,6 @@
 import "./index.scss";
 import 'lib-flexible';
 import $ from 'jquery';
-
-import {data} from './js/data'
-console.log(data);
 import init from './js/init'
 import {left, up, right, down} from './js/keyDown'
 
