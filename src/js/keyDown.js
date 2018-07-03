@@ -53,7 +53,7 @@ exports.left = function () {
 };
 
 exports.right = function () {
-  console.log('right')
+  console.log('right');
 
   for (let y = 0; y < 4; y++) {
     let row = data[y];

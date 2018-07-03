@@ -4,7 +4,7 @@ import $ from 'jquery';
 * data:         游戏的数据
 * positionObj:  存储着每个位置对应的left和top
 * */
-import {data, positionObj} from './data';
+import {data} from './data';
 import {calculationCoordinate, renderGame} from './tool'
 
 
@@ -52,5 +52,5 @@ export default function init () {
   data[y2][x2].value = baseVal2;
 
   // 根据data渲染结构
-  renderGame(data);
+  renderGame(data, {isScale: true});
 }

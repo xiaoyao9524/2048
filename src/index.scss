@@ -111,6 +111,7 @@
         font-weight: bold;
         border-radius: 5px;
         transition: .1s;
+
       }
       // 样式
       .c2 {
@@ -237,5 +238,16 @@
         left: 198px;
       }
     }
+  }
+}
+.game-scale {
+  animation: gScale .2s linear;
+}
+@keyframes gScale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
