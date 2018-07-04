@@ -37,6 +37,7 @@ exports.down = function () {
 };
 
 exports.left = function () {
+  console.clear();
   console.log('left');
 
   for (let y = 0; y < 4; y++) {
@@ -53,6 +54,7 @@ exports.left = function () {
 };
 
 exports.right = function () {
+  console.clear();
   console.log('right');
 
   for (let y = 0; y < 4; y++) {

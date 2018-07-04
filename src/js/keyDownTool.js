@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import {data} from './data'
-import {renderGame} from './tool'
+import {renderGame, createNewEl} from './tool'
 
 // 检查某个位置
 // 有值返回data对应的那一项，否则返回null
@@ -16,7 +16,7 @@ function check (obj) {
 
 let moveElLen = 0; // 一共移动的元素数量
 let moveDoneElLen = 0; // 运动完成的元素数量
-function moveTo (from, to) {
+function moveTo (from, to, options) {
   /*
     from: 要移动的格子信息 {x,y,val}
     to:   目标格子的信息 {x,y,val}
@@ -56,6 +56,7 @@ function moveTo (from, to) {
       renderGame(data);
       moveElLen = 0;
       moveDoneElLen = 0;
+      $('.game-box').append(createNewEl({direction: options.direction})).append(createNewEl({direction: options.direction}));
     }
   }).removeClass(beforeClass).addClass(afterClass);
   // console.log('修改后：', toEl);
@@ -117,7 +118,7 @@ export function moveUpOrDown (direction, obj) {
             y,
             val: null
           };
-          moveTo(obj, aims);
+          moveTo(obj, aims, {direction});
           return null;
         }
       } else {
@@ -128,13 +129,13 @@ export function moveUpOrDown (direction, obj) {
 
         if (to.value === val) {
           console.log('val一样');
-          moveTo(obj, to);
+          moveTo(obj, to, {direction});
         } else {
           console.log('val不一样');
           if (direction === 'up') {
-            moveTo(obj, {x, y: y + 1});
+            moveTo(obj, {x, y: y + 1}, {direction});
           } else if (direction === 'down') {
-            moveTo(obj, {x, y: y - 1});
+            moveTo(obj, {x, y: y - 1}, {direction});
           }
         }
         console.log(data);
@@ -155,7 +156,7 @@ export function moveLeftOrRight (direction, obj) {
     let flag = null; // 判断是否是最后一列
     if (direction === 'left') {
       flag = x <= 0;
-    } else {
+    } else if (direction === 'right') {
       flag = x >= 3;
     }
     // 如果是最后一列的话
@@ -169,14 +170,14 @@ export function moveLeftOrRight (direction, obj) {
         ret = {x, y};
         console.log('应该开始移动了, 目标位置为：', ret, '移动的格子信息为：', obj);
         console.log('目标位置val: ', ret.value, '移动格子的val: ', obj.val);
-        moveToX(obj, ret);
+        moveToX(obj, ret, {direction});
         return ret;
       } else {
         // 目标位置不为空
         console.log('目标位置不为空, 移动格子信息：', obj, '目标格子信息：', ret);
         if (obj.val === ret.value) {
           console.log('点数一样');
-          moveToX(obj, ret);
+          moveToX(obj, ret, {direction});
         } else {
           console.log('点数不一样, 移动格子：', obj, '目标格子: ', ret);
           let {x, y} = ret;
@@ -185,7 +186,7 @@ export function moveLeftOrRight (direction, obj) {
           } else if (direction === 'right') {
             x--;
           }
-          moveToX(obj,{x, y});
+          moveToX(obj,{x, y}, {direction});
         }
       }
     } else {
@@ -204,7 +205,23 @@ export function moveLeftOrRight (direction, obj) {
         return checkNext();
       } else {
         console.log('检查结果不为空：', ret);
-        return checkNext();
+        if (val === ret.value) {
+          console.log('点数一样', val, ret.value);
+          moveToX(obj, ret, {direction});
+        } else {
+          console.log('点数不一样', val, ret.value);
+          let x = ret.x;
+          if (direction === 'left') {
+            x++;
+          } else if (direction === 'right') {
+            x--;
+          }
+          moveToX(obj, {
+            x,
+            y
+          }, {direction});
+          console.log('点数不一样', val, ret.value)
+        }
       }
     }
   }
@@ -216,9 +233,10 @@ export function moveLeftOrRight (direction, obj) {
 // 左右的移动
 let moveElLenX = 0; // 一共移动的元素数量
 let moveDoneElLenX = 0; // 运动完成的元素数量
-function moveToX (from, to) {
+function moveToX (from, to, options) {
   console.group('moveToX开始');
   console.log('moveToX开始: from: ', from, 'to: ', to);
+
   if (from.x === to.x && from.y === to.y) {
     console.log('原地不动');
     return;
@@ -252,6 +270,9 @@ function moveToX (from, to) {
     if (moveElLenX === moveDoneElLenX) {
       console.log('全部移动完成了, data: ', data);
       renderGame(data);
+      moveElLenX = 0;
+      moveDoneElLenX = 0;
+      $('.game-box').append(createNewEl({direction: options.direction})).append(createNewEl({direction: options.direction}));
     }
   }).removeClass(beforeClass).addClass(afterClass);
   console.groupEnd();
