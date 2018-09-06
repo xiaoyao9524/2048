@@ -16,12 +16,12 @@ function check (obj) {
 
 let moveElLen = 0; // 一共移动的元素数量
 let moveDoneElLen = 0; // 运动完成的元素数量
-function moveTo (from, to, options) {
+function moveToY (from, to, options) {
   /*
     from: 要移动的格子信息 {x,y,val}
     to:   目标格子的信息 {x,y,val}
   */
-  console.log('moveTo开始: from: ', from, 'to: ', to);
+  console.log('moveToY开始: from: ', from, 'to: ', to);
   if (from.x === to.x && from.y === to.y) {
     console.log('原地不动');
     return;
@@ -56,7 +56,9 @@ function moveTo (from, to, options) {
       renderGame(data);
       moveElLen = 0;
       moveDoneElLen = 0;
-      $('.game-box').append(createNewEl({direction: options.direction})).append(createNewEl({direction: options.direction}));
+      // 只生成一个元素
+      $('.game-box').append(createNewEl({direction: options.direction}));
+      // .append(createNewEl({direction: options.direction}))
     }
   }).removeClass(beforeClass).addClass(afterClass);
   // console.log('修改后：', toEl);
@@ -83,7 +85,7 @@ export function moveUpOrDown (direction, obj) {
     // 如果是的话，提示到头了
     if (flag) {
       console.log('y到头了, row:', y);
-      return check({x, y})
+      return // check({x, y})
     } else {
       // 否则的话检查上一行（或下一行）
       if (direction === 'up') {
@@ -118,7 +120,7 @@ export function moveUpOrDown (direction, obj) {
             y,
             val: null
           };
-          moveTo(obj, aims, {direction});
+          moveToY(obj, aims, {direction});
           return null;
         }
       } else {
@@ -129,13 +131,13 @@ export function moveUpOrDown (direction, obj) {
 
         if (to.value === val) {
           console.log('val一样');
-          moveTo(obj, to, {direction});
+          moveToY(obj, to, {direction});
         } else {
           console.log('val不一样');
           if (direction === 'up') {
-            moveTo(obj, {x, y: y + 1}, {direction});
+            moveToY(obj, {x, y: y + 1}, {direction});
           } else if (direction === 'down') {
-            moveTo(obj, {x, y: y - 1}, {direction});
+            moveToY(obj, {x, y: y - 1}, {direction});
           }
         }
         console.log(data);
@@ -272,7 +274,7 @@ function moveToX (from, to, options) {
       renderGame(data);
       moveElLenX = 0;
       moveDoneElLenX = 0;
-      $('.game-box').append(createNewEl({direction: options.direction})).append(createNewEl({direction: options.direction}));
+      $('.game-box').append(createNewEl({direction: options.direction}));
     }
   }).removeClass(beforeClass).addClass(afterClass);
   console.groupEnd();

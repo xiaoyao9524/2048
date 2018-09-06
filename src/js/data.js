@@ -22,7 +22,8 @@ for (let i = 0; i < 4; i++) {
       y: i,
       left: positionObj[count].left,
       top: positionObj[count].top,
-      value: null
+      value: null,
+      isMove: false
     };
     row.push(obj);
     count++;
@@ -30,6 +31,6 @@ for (let i = 0; i < 4; i++) {
   data.push(row);
 }
 
-
+window.data = data;
 exports.data = data; // 游戏的数据
 exports.positionObj = positionObj;

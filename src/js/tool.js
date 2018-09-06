@@ -10,7 +10,6 @@ export function calculationCoordinate (num) {
     y
   }
 }
-
 // 重新渲染视图
 export function renderGame (data = data, option) {
   let opt = Object.assign({
@@ -25,6 +24,7 @@ export function renderGame (data = data, option) {
     // console.log(row);
     for (let x = 0; x < row.length; x++) {
       let item = row[x];
+      item.isMove = false; // 初始化是否移动状态
       // console.log(item);
       if (!item.value) {
         continue;

@@ -1,5 +1,5 @@
 // 首页的入口文件
-import "./index.scss";
+import "./scss/index.scss";
 import 'lib-flexible';
 import $ from 'jquery';
 import init from './js/init'
