@@ -24,7 +24,8 @@ export function renderGame (data = data, option) {
     // console.log(row);
     for (let x = 0; x < row.length; x++) {
       let item = row[x];
-      item.isMove = false; // 初始化是否移动状态
+      item.isMoveX = false; // 初始化是否移动状态
+      item.isMoveY = false; // 初始化是否移动状态
       // console.log(item);
       if (!item.value) {
         continue;
@@ -158,4 +159,31 @@ function createCoordinate (opt) {
     return createCoordinate(opt);
   }
   return {x, y};
+}
+
+export function checkIsMove (colOrRow, num) { // 检测某一列或某一行是否可以移动
+  // colOrRow： 'x'或'y'
+  // num: 列或行数, 0 - 3
+  let result = null;
+  console.error('检测是否可以移动方法开始：', colOrRow, num);
+  if (colOrRow === 'x') {
+    for (let item of data[num]) {
+      // 为true说明不能移动
+      if (item.isMoveX) {
+        result = false;
+      } else {
+        result = true;
+      }
+    }
+  } else if (colOrRow === 'y') {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i][num].isMoveY) {
+        result = false;
+      } else {
+        result = true;
+      }
+    }
+  }
+  console.error('检测是否可以移动方法结果：', result);
+  return result;
 }

@@ -23,14 +23,14 @@ for (let i = 0; i < 4; i++) {
       left: positionObj[count].left,
       top: positionObj[count].top,
       value: null,
-      isMove: false
+      isMoveX: false,
+      isMoveY: false,
     };
     row.push(obj);
     count++;
   }
   data.push(row);
 }
-
 window.data = data;
 exports.data = data; // 游戏的数据
 exports.positionObj = positionObj;
